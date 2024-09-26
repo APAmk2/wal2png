@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
     delete reader;
 
     std::vector<unsigned char> image;
-    int len = (file->width * file->height) * 4;
-    image.resize(len);
+    int len = file->width * file->height;
+    image.resize(len * 4);
     for (size_t i = 0; i < len; i++)
     {
         image[i * 4] = palette[file->pixels[i]].r;     //Red
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 
     std::filesystem::path path = filename;
     path.replace_extension(".png");
-    unsigned error = lodepng::encode(std::filesystem::canonical(path).string(), image, file->width, file->height);
+    unsigned error = lodepng::encode(path.string(), image, file->width, file->height);
     if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
     
     delete file;
