@@ -9,8 +9,6 @@
 #include "lodepng.h"
 #include "wal.h"
 
-using namespace std;
-
 std::vector<ucolor> palette;
 
 void SetupPalette()
@@ -34,6 +32,9 @@ int main(int argc, char* argv[])
 {
     if (argc < 2)
     {
+        std::cout << "ERROR: NO .WAL FILE SPECIFIED!\n";
+        std::cout << "ABOUT: ID SOFTWARE'S .WAL CONVERTER TO .PNG, 2024, APAMK2\n";
+        std::cout << "USES LODEPNG LIB\n";
         return -1;
     }
     SetupPalette();
